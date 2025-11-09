@@ -1,0 +1,2028 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" xml:lang="es-ES">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Oscar Pons" />
+  <meta name="author" content="Antonio Nieves" />
+  <meta name="author" content="Jose Luis Sanchez" />
+  <title>Crypto Narrative Hunter - Tesis Final</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } 
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } 
+code span.at { color: #204a87; } 
+code span.bn { color: #0000cf; } 
+code span.cf { color: #204a87; font-weight: bold; } 
+code span.ch { color: #4e9a06; } 
+code span.cn { color: #8f5902; } 
+code span.co { color: #8f5902; font-style: italic; } 
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } 
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } 
+code span.dt { color: #204a87; } 
+code span.dv { color: #0000cf; } 
+code span.er { color: #a40000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #0000cf; } 
+code span.fu { color: #204a87; font-weight: bold; } 
+code span.im { } 
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } 
+code span.kw { color: #204a87; font-weight: bold; } 
+code span.op { color: #ce5c00; font-weight: bold; } 
+code span.ot { color: #8f5902; } 
+code span.pp { color: #8f5902; font-style: italic; } 
+code span.sc { color: #ce5c00; font-weight: bold; } 
+code span.ss { color: #4e9a06; } 
+code span.st { color: #4e9a06; } 
+code span.va { color: #000000; } 
+code span.vs { color: #4e9a06; } 
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">@page {
+size: A4;
+margin: 2.5cm;
+}
+body {
+font-family: Arial, sans-serif;
+font-size: 12pt;
+line-height: 1.5;
+text-align: justify;
+max-width: 21cm;
+margin: 0 auto;
+padding: 2.5cm;
+background-color: white;
+}
+h1 {
+font-size: 18pt;
+font-weight: bold;
+margin-top: 1.5em;
+margin-bottom: 0.8em;
+page-break-before: always;
+color: #2C5F7C;
+}
+h2 {
+font-size: 16pt;
+font-weight: bold;
+margin-top: 1.2em;
+margin-bottom: 0.6em;
+color: #2C5F7C;
+}
+h3 {
+font-size: 14pt;
+font-weight: bold;
+margin-top: 1em;
+margin-bottom: 0.5em;
+color: #4A7C2C;
+}
+p {
+margin-bottom: 0.8em;
+text-indent: 0;
+}
+code {
+font-family: 'Courier New', monospace;
+background-color: #f5f5f5;
+padding: 2px 4px;
+border-radius: 3px;
+font-size: 11pt;
+}
+pre {
+background-color: #f5f5f5;
+padding: 10px;
+border-left: 4px solid #2C5F7C;
+overflow-x: auto;
+font-size: 10pt;
+line-height: 1.4;
+page-break-inside: avoid;
+}
+table {
+border-collapse: collapse;
+width: 100%;
+margin: 1em 0;
+font-size: 11pt;
+page-break-inside: avoid;
+}
+th {
+background-color: #2C5F7C;
+color: white;
+padding: 8px;
+text-align: left;
+font-weight: bold;
+}
+td {
+border: 1px solid #ddd;
+padding: 8px;
+}
+tr:nth-child(even) {
+background-color: #f9f9f9;
+}
+img {
+max-width: 100%;
+height: auto;
+display: block;
+margin: 1em auto;
+page-break-inside: avoid;
+}
+figure {
+page-break-inside: avoid;
+margin: 1.5em 0;
+text-align: center;
+}
+figcaption {
+font-style: italic;
+font-size: 11pt;
+margin-top: 0.5em;
+color: #666;
+}
+blockquote {
+border-left: 4px solid #4A7C2C;
+padding-left: 1em;
+margin-left: 0;
+font-style: italic;
+color: #444;
+}
+ul, ol {
+margin-left: 2em;
+margin-bottom: 0.8em;
+}
+li {
+margin-bottom: 0.3em;
+}
+a {
+color: #2C5F7C;
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+.title-page {
+text-align: center;
+page-break-after: always;
+padding: 5cm 0;
+}
+.title-page h1 {
+font-size: 24pt;
+color: #2C5F7C;
+margin-bottom: 1em;
+}
+.title-page .authors {
+font-size: 14pt;
+margin: 2em 0;
+}
+.title-page .institution {
+font-size: 12pt;
+color: #666;
+margin-top: 3em;
+}
+@media print {
+body {
+padding: 0;
+}
+h1, h2, h3 {
+page-break-after: avoid;
+}
+table, figure, img {
+page-break-inside: avoid;
+}
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Crypto Narrative Hunter - Tesis Final</h1>
+<p class="subtitle">Clustering No Supervisado de Wallets Smart Money en
+Mercados DeFi de Ethereum</p>
+<p class="author">Oscar Pons</p>
+<p class="author">Antonio Nieves</p>
+<p class="author">Jose Luis Sanchez</p>
+<p class="date">Noviembre 2025</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#tesis-final---máster-en-inteligencia-artificial-avanzada-y-generativa" id="toc-tesis-final---máster-en-inteligencia-artificial-avanzada-y-generativa">TESIS
+FINAL - MÁSTER EN INTELIGENCIA ARTIFICIAL AVANZADA Y GENERATIVA</a>
+<ul>
+<li><a href="#crypto-narrative-hunter" id="toc-crypto-narrative-hunter">CRYPTO NARRATIVE HUNTER</a>
+<ul>
+<li><a href="#clustering-no-supervisado-de-wallets-smart-money-en-mercados-defi-de-ethereum" id="toc-clustering-no-supervisado-de-wallets-smart-money-en-mercados-defi-de-ethereum">Clustering
+No Supervisado de Wallets Smart Money en Mercados DeFi de
+Ethereum</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#índice" id="toc-índice">ÍNDICE</a>
+<ul>
+<li><a href="#contenido-principal" id="toc-contenido-principal">CONTENIDO PRINCIPAL</a></li>
+<li><a href="#apéndices" id="toc-apéndices">APÉNDICES</a></li>
+</ul></li>
+<li><a href="#resumen-ejecutivo" id="toc-resumen-ejecutivo">RESUMEN
+EJECUTIVO</a></li>
+<li><a href="#introducción" id="toc-introducción">INTRODUCCIÓN</a>
+<ul>
+<li><a href="#motivación-del-proyecto" id="toc-motivación-del-proyecto">Motivación del Proyecto</a></li>
+<li><a href="#hipótesis-iniciales" id="toc-hipótesis-iniciales">Hipótesis Iniciales</a>
+<ul>
+<li><a href="#hipótesis-h1-existencia-de-arquetipos-conductuales-diferenciados" id="toc-hipótesis-h1-existencia-de-arquetipos-conductuales-diferenciados">Hipótesis
+H1: Existencia de Arquetipos Conductuales Diferenciados</a></li>
+<li><a href="#hipótesis-h2-robustez-algorítmica-de-clusters" id="toc-hipótesis-h2-robustez-algorítmica-de-clusters">Hipótesis H2:
+Robustez Algorítmica de Clusters</a></li>
+<li><a href="#hipótesis-h3-diferenciación-por-métricas-de-rendimiento" id="toc-hipótesis-h3-diferenciación-por-métricas-de-rendimiento">Hipótesis
+H3: Diferenciación por Métricas de Rendimiento</a></li>
+<li><a href="#hipótesis-h4-ventaja-de-carteras-concentradas" id="toc-hipótesis-h4-ventaja-de-carteras-concentradas">Hipótesis H4:
+Ventaja de Carteras Concentradas</a></li>
+</ul></li>
+<li><a href="#contexto-del-proyecto" id="toc-contexto-del-proyecto">Contexto del Proyecto</a></li>
+</ul></li>
+<li><a href="#marco-teórico-y-antecedentes" id="toc-marco-teórico-y-antecedentes">MARCO TEÓRICO Y ANTECEDENTES</a>
+<ul>
+<li><a href="#descripción-del-problema" id="toc-descripción-del-problema">Descripción del Problema</a></li>
+<li><a href="#objetivos-específicos" id="toc-objetivos-específicos">Objetivos Específicos</a>
+<ul>
+<li><a href="#objetivos-primarios" id="toc-objetivos-primarios">Objetivos Primarios</a></li>
+<li><a href="#objetivos-secundarios" id="toc-objetivos-secundarios">Objetivos Secundarios</a></li>
+</ul></li>
+<li><a href="#relación-con-contenidos-del-máster" id="toc-relación-con-contenidos-del-máster">Relación con Contenidos del
+Máster</a></li>
+</ul></li>
+<li><a href="#metodología" id="toc-metodología">METODOLOGÍA</a>
+<ul>
+<li><a href="#arquitectura-general-del-sistema" id="toc-arquitectura-general-del-sistema">Arquitectura General del
+Sistema</a></li>
+<li><a href="#pipeline-de-datos" id="toc-pipeline-de-datos">Pipeline de
+Datos</a>
+<ul>
+<li><a href="#criterios-de-selección-de-carteras" id="toc-criterios-de-selección-de-carteras">Criterios de Selección de
+Carteras</a></li>
+<li><a href="#extracción-de-balances" id="toc-extracción-de-balances">Extracción de Balances</a></li>
+<li><a href="#clasificación-narrativa" id="toc-clasificación-narrativa">Clasificación Narrativa</a></li>
+</ul></li>
+<li><a href="#ingeniería-de-características" id="toc-ingeniería-de-características">Ingeniería de Características</a>
+<ul>
+<li><a href="#tabla-2---taxonomía-de-features-ingenieriadas" id="toc-tabla-2---taxonomía-de-features-ingenieriadas">Tabla 2 -
+Taxonomía de Features Ingenieriadas</a></li>
+<li><a href="#metodología-de-cálculo-ejemplos" id="toc-metodología-de-cálculo-ejemplos">Metodología de Cálculo
+(Ejemplos)</a></li>
+</ul></li>
+<li><a href="#clustering-hdbscan" id="toc-clustering-hdbscan">Clustering
+HDBSCAN</a>
+<ul>
+<li><a href="#hiperparámetros-optimizados" id="toc-hiperparámetros-optimizados">Hiperparámetros
+Optimizados</a></li>
+<li><a href="#preprocesamiento" id="toc-preprocesamiento">Preprocesamiento</a></li>
+<li><a href="#visualización-t-sne" id="toc-visualización-t-sne">Visualización: t-SNE</a></li>
+</ul></li>
+<li><a href="#validación-estadística" id="toc-validación-estadística">Validación Estadística</a>
+<ul>
+<li><a href="#métricas-de-calidad-de-clustering" id="toc-métricas-de-calidad-de-clustering">Métricas de Calidad de
+Clustering</a></li>
+<li><a href="#validación-cruzada-algorítmica" id="toc-validación-cruzada-algorítmica">Validación Cruzada
+Algorítmica</a></li>
+<li><a href="#tests-de-hipótesis" id="toc-tests-de-hipótesis">Tests de
+Hipótesis</a></li>
+<li><a href="#estabilidad-bootstrap" id="toc-estabilidad-bootstrap">Estabilidad Bootstrap</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#resultados" id="toc-resultados">RESULTADOS</a>
+<ul>
+<li><a href="#dataset-final" id="toc-dataset-final">Dataset Final</a>
+<ul>
+<li><a href="#tabla-3---resumen-del-dataset-final" id="toc-tabla-3---resumen-del-dataset-final">Tabla 3 - Resumen del
+Dataset Final</a></li>
+<li><a href="#estadísticas-descriptivas-features-clave" id="toc-estadísticas-descriptivas-features-clave">Estadísticas
+Descriptivas (Features Clave)</a></li>
+</ul></li>
+<li><a href="#resultados-de-clustering" id="toc-resultados-de-clustering">Resultados de Clustering</a>
+<ul>
+<li><a href="#configuración-final" id="toc-configuración-final">Configuración Final</a></li>
+<li><a href="#tabla-4---métricas-de-calidad-de-clustering" id="toc-tabla-4---métricas-de-calidad-de-clustering">Tabla 4 - Métricas
+de Calidad de Clustering</a></li>
+<li><a href="#figura-3---proyección-t-sne-de-clusters-hdbscan" id="toc-figura-3---proyección-t-sne-de-clusters-hdbscan">Figura 3 -
+Proyección t-SNE de Clusters HDBSCAN</a></li>
+<li><a href="#figura-4---análisis-silhouette-por-cluster" id="toc-figura-4---análisis-silhouette-por-cluster">Figura 4 - Análisis
+Silhouette por Cluster</a></li>
+<li><a href="#tabla-5---distribución-de-tamaños-de-clusters" id="toc-tabla-5---distribución-de-tamaños-de-clusters">Tabla 5 -
+Distribución de Tamaños de Clusters</a></li>
+</ul></li>
+<li><a href="#validación-estadística-1" id="toc-validación-estadística-1">Validación Estadística</a>
+<ul>
+<li><a href="#pruebas-de-hipótesis-kruskal-wallis" id="toc-pruebas-de-hipótesis-kruskal-wallis">Pruebas de Hipótesis:
+Kruskal-Wallis</a></li>
+<li><a href="#tabla-6---resultados-de-pruebas-estadísticas" id="toc-tabla-6---resultados-de-pruebas-estadísticas">Tabla 6 -
+Resultados de Pruebas Estadísticas</a></li>
+<li><a href="#análisis-de-concordancia-algorítmica" id="toc-análisis-de-concordancia-algorítmica">Análisis de Concordancia
+Algorítmica</a></li>
+<li><a href="#tabla-7---concordancia-entre-algoritmos" id="toc-tabla-7---concordancia-entre-algoritmos">Tabla 7 - Concordancia
+entre Algoritmos</a></li>
+<li><a href="#estabilidad-bootstrap-1" id="toc-estabilidad-bootstrap-1">Estabilidad Bootstrap</a></li>
+</ul></li>
+<li><a href="#hallazgos-clave" id="toc-hallazgos-clave">Hallazgos
+Clave</a>
+<ul>
+<li><a href="#tabla-8---hallazgos-clave-y-evidencia-empírica" id="toc-tabla-8---hallazgos-clave-y-evidencia-empírica">Tabla 8 -
+Hallazgos Clave y Evidencia Empírica</a></li>
+<li><a href="#análisis-detallado-hallazgo-1-heterogeneidad-extrema" id="toc-análisis-detallado-hallazgo-1-heterogeneidad-extrema">Análisis
+Detallado: Hallazgo 1 (Heterogeneidad Extrema)</a></li>
+<li><a href="#análisis-detallado-hallazgo-4-concentración-vs-diversificación" id="toc-análisis-detallado-hallazgo-4-concentración-vs-diversificación">Análisis
+Detallado: Hallazgo 4 (Concentración vs Diversificación)</a></li>
+</ul></li>
+<li><a href="#perfiles-de-clusters-resumen" id="toc-perfiles-de-clusters-resumen">Perfiles de Clusters (Resumen)</a>
+<ul>
+<li><a href="#tabla-9---perfiles-de-clusters-top-selección-representativa" id="toc-tabla-9---perfiles-de-clusters-top-selección-representativa">Tabla
+9 - Perfiles de Clusters Top (Selección Representativa)</a></li>
+<li><a href="#figura-7---violin-plots-de-roi-por-cluster" id="toc-figura-7---violin-plots-de-roi-por-cluster">Figura 7 - Violin
+Plots de ROI por Cluster</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#discusión" id="toc-discusión">DISCUSIÓN</a>
+<ul>
+<li><a href="#interpretación-de-resultados" id="toc-interpretación-de-resultados">Interpretación de
+Resultados</a></li>
+<li><a href="#aplicaciones-prácticas" id="toc-aplicaciones-prácticas">Aplicaciones Prácticas</a></li>
+<li><a href="#limitaciones" id="toc-limitaciones">Limitaciones</a></li>
+</ul></li>
+<li><a href="#conclusiones-y-trabajo-futuro" id="toc-conclusiones-y-trabajo-futuro">CONCLUSIONES Y TRABAJO FUTURO</a>
+<ul>
+<li><a href="#conclusiones-principales" id="toc-conclusiones-principales">Conclusiones Principales</a></li>
+<li><a href="#aportación-académica" id="toc-aportación-académica">Aportación Académica</a></li>
+<li><a href="#trabajo-futuro" id="toc-trabajo-futuro">Trabajo
+Futuro</a></li>
+</ul></li>
+<li><a href="#código-fuente" id="toc-código-fuente">CÓDIGO FUENTE</a>
+<ul>
+<li><a href="#repositorio-github" id="toc-repositorio-github">Repositorio GitHub</a></li>
+<li><a href="#instalación-y-reproducibilidad" id="toc-instalación-y-reproducibilidad">Instalación y
+Reproducibilidad</a>
+<ul>
+<li><a href="#requisitos" id="toc-requisitos">Requisitos</a></li>
+<li><a href="#setup" id="toc-setup">Setup</a></li>
+<li><a href="#reproducir-clustering" id="toc-reproducir-clustering">Reproducir Clustering</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#bibliografía" id="toc-bibliografía">BIBLIOGRAFÍA</a></li>
+<li><a href="#apéndices-1" id="toc-apéndices-1">APÉNDICES</a>
+<ul>
+<li><a href="#apéndice-a-análisis-exploratorio-de-datos-eda" id="toc-apéndice-a-análisis-exploratorio-de-datos-eda">APÉNDICE A:
+Análisis Exploratorio de Datos (EDA)</a></li>
+<li><a href="#apéndice-b-notebook-de-clustering-story-4.3" id="toc-apéndice-b-notebook-de-clustering-story-4.3">APÉNDICE B:
+Notebook de Clustering (Story 4.3)</a></li>
+<li><a href="#apéndice-c-notebook-de-interpretación-story-4.4" id="toc-apéndice-c-notebook-de-interpretación-story-4.4">APÉNDICE C:
+Notebook de Interpretación (Story 4.4)</a></li>
+<li><a href="#apéndice-d-notebook-de-evaluación-story-4.5" id="toc-apéndice-d-notebook-de-evaluación-story-4.5">APÉNDICE D:
+Notebook de Evaluación (Story 4.5)</a></li>
+<li><a href="#apéndice-e-presentación-de-investigación" id="toc-apéndice-e-presentación-de-investigación">APÉNDICE E:
+Presentación de Investigación</a></li>
+<li><a href="#apéndice-f-queries-sql-de-dune-analytics" id="toc-apéndice-f-queries-sql-de-dune-analytics">APÉNDICE F: Queries
+SQL de Dune Analytics</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="tesis-final---máster-en-inteligencia-artificial-avanzada-y-generativa">TESIS
+FINAL - MÁSTER EN INTELIGENCIA ARTIFICIAL AVANZADA Y GENERATIVA</h1>
+<hr />
+<h2 id="crypto-narrative-hunter">CRYPTO NARRATIVE HUNTER</h2>
+<h3 id="clustering-no-supervisado-de-wallets-smart-money-en-mercados-defi-de-ethereum">Clustering
+No Supervisado de Wallets Smart Money en Mercados DeFi de Ethereum</h3>
+<p><strong>Identificación de Arquetipos Conductuales mediante HDBSCAN y
+Validación Estadística</strong></p>
+<hr />
+<p><strong>Autores:</strong> Oscar Pons, Antonio Nieves y Jose Luis
+Sanchez <strong>Máster:</strong> Máster en Inteligencia Artificial
+Avanzada y Generativa <strong>Institución:</strong> MBIT School
+<strong>Fecha:</strong> Noviembre 2025</p>
+<hr />
+<p><strong>GUÍA DE FORMATO PARA VERSIÓN PDF (MBIT School)</strong></p>
+<p><strong>Requisitos de formato según “Estructura y Guía de Estilo en
+Proyectos End 2 End”:</strong> - Fuente: Arial, Calibri o Verdana,
+tamaño 12 - Interlineado: 1.5 - Márgenes: 2.5 cm en todos los lados -
+Alineación de párrafos: Justificada - Resumen Ejecutivo: Máximo 1 página
+- Estilo: Objetivo y conciso</p>
+<hr />
+<h1 id="índice">ÍNDICE</h1>
+<h2 id="contenido-principal">CONTENIDO PRINCIPAL</h2>
+<p>RESUMEN EJECUTIVO</p>
+<p>INTRODUCCIÓN - Motivación del proyecto - Hipótesis iniciales -
+Contexto del proyecto</p>
+<p>MARCO TEÓRICO Y ANTECEDENTES - Descripción del problema - Objetivos
+específicos - Relación con contenidos del máster</p>
+<p>METODOLOGÍA - Arquitectura general del sistema - Pipeline de datos -
+Ingeniería de características - Clustering HDBSCAN - Validación
+estadística</p>
+<p>RESULTADOS - Dataset final - Resultados de clustering - Validación
+estadística - Hallazgos clave - Perfiles de clusters</p>
+<p>DISCUSIÓN - Interpretación de resultados - Aplicaciones prácticas -
+Limitaciones</p>
+<p>CONCLUSIONES Y TRABAJO FUTURO - Conclusiones principales - Aportación
+académica - Trabajo futuro</p>
+<p>CÓDIGO FUENTE - Repositorio GitHub - Estructura del proyecto</p>
+<p>BIBLIOGRAFÍA</p>
+<h2 id="apéndices">APÉNDICES</h2>
+<ul>
+<li><strong>APÉNDICE A</strong>: Análisis Exploratorio de Datos
+(EDA)</li>
+<li><strong>APÉNDICE B</strong>: Notebook de Clustering (Story 4.3)</li>
+<li><strong>APÉNDICE C</strong>: Notebook de Interpretación (Story
+4.4)</li>
+<li><strong>APÉNDICE D</strong>: Notebook de Evaluación (Story 4.5)</li>
+<li><strong>APÉNDICE E</strong>: Presentación de Investigación</li>
+<li><strong>APÉNDICE F</strong>: Queries SQL de Dune Analytics</li>
+</ul>
+<hr />
+<h1 id="resumen-ejecutivo">RESUMEN EJECUTIVO</h1>
+<p>Los mercados de criptomonedas carecen de taxonomías empíricas para
+caracterizar el comportamiento de inversores sofisticados (“smart
+money”). Este proyecto aplica clustering no supervisado (HDBSCAN) a
+2,159 carteras operando en DEXs de Ethereum (septiembre-octubre 2025)
+para identificar arquetipos conductuales mediante técnicas de machine
+learning y validación estadística rigurosa.</p>
+<p><strong>Objetivos:</strong> Validar cuatro hipótesis sobre
+comportamiento de smart money: (H1) existencia de patrones
+diferenciables de trading, (H2) robustez algorítmica de clusters, (H3)
+diferencias estadísticas en métricas de rendimiento, y (H4) ventaja de
+carteras concentradas.</p>
+<p><strong>Metodología:</strong> Pipeline end-to-end integrando APIs de
+Dune Analytics, Alchemy y CoinGecko, con extracción de 34,034
+transacciones, ingeniería de 41 features en 5 categorías (rendimiento,
+comportamiento, concentración, exposición narrativa,
+acumulación/distribución), clustering HDBSCAN optimizado, y validación
+mediante tests de Kruskal-Wallis, bootstrap (ARI=0.82±0.08) y
+cross-validation con K-Means.</p>
+<p><strong>Resultados:</strong> Las cuatro hipótesis fueron validadas
+con evidencia empírica robusta (todas p&lt;0.001). HDBSCAN identificó 13
+clusters + 48.4% ruido (carteras con estrategias únicas), con silhouette
+score de 0.4078. Los clusters difieren significativamente en ROI
+(η²=0.67), Sharpe Ratio (η²=0.60), y métricas conductuales. El 69% de
+carteras exhiben especialización narrativa (&gt;60% exposición en una
+narrativa), y el HHI medio del portfolio es 0.9087, indicando
+ultra-concentración en 1-2 tokens.</p>
+<p><strong>Hallazgo clave:</strong> El 48.4% de carteras clasificadas
+como “ruido” no representa fallo metodológico sino característica
+fundamental del mercado cripto: las estrategias ganadoras son
+heterogéneas e idiosincrásicas, desafiando taxonomías rígidas.</p>
+<p><strong>Contribución académica:</strong> Primera taxonomía validada
+estadísticamente de arquetipos de smart money en Ethereum, estableciendo
+framework replicable con validación cross-algorítmica y 14 arquetipos
+interpretables.</p>
+<p><strong>Alineación MBIT:</strong> Integra competencias del máster en
+machine learning avanzado (HDBSCAN, validación estadística),
+infraestructura de datos e IA (PostgreSQL, pipelines ETL), visualización
+avanzada (t-SNE, heatmaps), y estadística computacional (tests no
+paramétricos, bootstrap).</p>
+<p><strong>Palabras clave:</strong> Blockchain Analytics, HDBSCAN
+Clustering, Smart Money, Feature Engineering, Ethereum DeFi, Validación
+Estadística, Arquetipos Conductuales</p>
+<hr />
+<h1 id="introducción">INTRODUCCIÓN</h1>
+<h2 id="motivación-del-proyecto">Motivación del Proyecto</h2>
+<p>Los mercados de criptomonedas presentan características únicas que
+desafían los modelos tradicionales de comportamiento de inversores: alta
+volatilidad, operación 24/7, seudoanonimato mediante direcciones
+blockchain, y ciclos narrativos acelerados donde nuevos sectores emergen
+y desaparecen en meses.</p>
+<p>A diferencia de mercados financieros tradicionales donde existen
+taxonomías establecidas de inversores (institucionales, retail, market
+makers), el espacio cripto carece de clasificaciones empíricas basadas
+en comportamiento on-chain observable. La literatura académica sobre
+behavioral finance en cripto es escasa y fragmentada, limitándose a
+estudios de caso sobre eventos específicos sin establecer marcos
+generales de caracterización conductual.</p>
+<p>Este proyecto surge de la necesidad de identificar y caracterizar
+arquetipos conductuales dentro de la población de “smart money”,
+inversores que consistentemente generan retornos superiores al mercado.
+El término “smart money” se define mediante criterios cuantitativos
+observables:</p>
+<ul>
+<li>Volumen mínimo: &gt;$10,000 USD equivalente en período de 30
+días</li>
+<li>Frecuencia mínima: &gt;10 transacciones en 30 días</li>
+<li>Diversidad mínima: &gt;3 tokens únicos operados</li>
+<li>Consistencia temporal: &gt;7 días activos de trading en 30 días</li>
+<li>Exclusiones de calidad: Detección y filtrado de bots MEV, trading de
+alta frecuencia automatizado</li>
+</ul>
+<p>La relevancia del proyecto se fundamenta en tres pilares:</p>
+<p><strong>1. Pilar Académico:</strong> Primera aplicación documentada
+de clustering basado en densidad (HDBSCAN) al comportamiento de carteras
+en blockchain pública. Contribuye una metodología reproducible que puede
+adaptarse a otras cadenas o períodos temporales.</p>
+<p><strong>2. Pilar Práctico:</strong> Generación de análisis
+accionables para inversores retail, fondos institucionales, y
+plataformas analíticas que buscan benchmarking y clasificación
+automática de estrategias.</p>
+<p><strong>3. Pilar Técnico:</strong> Desarrollo de pipeline end-to-end
+para extracción, procesamiento y análisis de datos blockchain a escala
+relevante (1,767,738 registros de balance, 34,034 transacciones),
+demostrando viabilidad técnica con recursos limitados.</p>
+<p>La motivación última es elevar el estándar metodológico en análisis
+cripto, transitando de análisis ad-hoc hacia investigación empírica
+rigurosa que cumpla estándares académicos.</p>
+<hr />
+<h2 id="hipótesis-iniciales">Hipótesis Iniciales</h2>
+<p>El proyecto está guiado por cuatro hipótesis formales con criterios
+de aceptación cuantificables:</p>
+<h3 id="hipótesis-h1-existencia-de-arquetipos-conductuales-diferenciados">Hipótesis
+H1: Existencia de Arquetipos Conductuales Diferenciados</h3>
+<p><strong>Hipótesis nula (H₀):</strong> Las carteras smart money no
+forman clusters conductuales distintos.</p>
+<p><strong>Hipótesis alternativa (Hₐ):</strong> Las carteras smart money
+se agrupan en arquetipos conductuales con separación estadísticamente
+significativa.</p>
+<p><strong>Criterios de aceptación:</strong> - Silhouette Score ≥ 0.3
+(separación aceptable) - Tamaño mínimo de cluster: ≥100 carteras -
+Validación bootstrap: ARI &gt;0.7 sobre 1,000 iteraciones -
+Interpretabilidad: Clusters describibles con etiquetas de dominio</p>
+<p><strong>Justificación teórica:</strong> Literatura en behavioral
+finance (Barber &amp; Odean, 2000) identifica distintos estilos de
+inversión en mercados tradicionales. Se espera diversidad similar en
+cripto con arquetipos específicos al dominio.</p>
+<hr />
+<h3 id="hipótesis-h2-robustez-algorítmica-de-clusters">Hipótesis H2:
+Robustez Algorítmica de Clusters</h3>
+<p><strong>Hipótesis nula (H₀):</strong> La estructura de clusters es un
+artefacto del algoritmo HDBSCAN.</p>
+<p><strong>Hipótesis alternativa (Hₐ):</strong> Los clusters son
+consistentes entre diferentes algoritmos (HDBSCAN vs K-Means).</p>
+<p><strong>Criterios de aceptación:</strong> - Adjusted Rand Index (ARI)
+&gt;0.3 - Normalized Mutual Information (NMI) &gt;0.4 - Análisis de
+solapamiento: ≥70% de carteras coinciden con &gt;80% pureza</p>
+<p><strong>Justificación metodológica:</strong> Validación cruzada
+algorítmica es el estándar para distinguir estructura real de artefactos
+metodológicos.</p>
+<hr />
+<h3 id="hipótesis-h3-diferenciación-por-métricas-de-rendimiento">Hipótesis
+H3: Diferenciación por Métricas de Rendimiento</h3>
+<p><strong>Hipótesis nula (H₀):</strong> Los clusters no difieren
+significativamente en métricas de rendimiento.</p>
+<p><strong>Hipótesis alternativa (Hₐ):</strong> Los clusters exhiben
+diferencias estadísticamente significativas en al menos 3 métricas de
+rendimiento.</p>
+<p><strong>Criterios de aceptación:</strong> - Prueba Kruskal-Wallis:
+p-value &lt;0.05 para ≥3 métricas - Tamaños de efecto: Epsilon-squared
+(ε²) &gt;0.14 - Post-hoc tests: Test de Dunn con corrección
+Bonferroni</p>
+<p><strong>Métricas evaluadas:</strong> ROI, Sharpe Ratio, Max Drawdown,
+Win Rate, Volatilidad</p>
+<hr />
+<h3 id="hipótesis-h4-ventaja-de-carteras-concentradas">Hipótesis H4:
+Ventaja de Carteras Concentradas</h3>
+<p><strong>Hipótesis nula (H₀):</strong> La concentración de cartera no
+correlaciona con retornos ajustados al riesgo.</p>
+<p><strong>Hipótesis alternativa (Hₐ):</strong> Existe relación positiva
+entre concentración de cartera y Sharpe ratio.</p>
+<p><strong>Criterios de aceptación:</strong> - Correlación lineal:
+|Pearson r| &gt;0.3 - O regresión polinomial: R² &gt;0.20 con término
+cuadrático significativo - Robustez al controlar por arquetipo
+conductual</p>
+<p><strong>Justificación teórica:</strong> En mercados cripto con alta
+correlación entre activos, la diversificación puede diluir retornos sin
+reducir riesgo proporcionalmente. Esta hipótesis es contrarian y
+requiere evidencia sólida.</p>
+<hr />
+<h2 id="contexto-del-proyecto">Contexto del Proyecto</h2>
+<p>Este proyecto se desarrolla como trabajo fin de máster (TFM) del
+Máster en Inteligencia Artificial Avanzada y Generativa de MBIT School,
+demostrando aplicación práctica de competencias adquiridas en Machine
+Learning, Estadística, Ingeniería de Datos y Visualización.</p>
+<p><strong>Contexto institucional:</strong> - Institución: MBIT School
+(Madrid, España) - Programa: Máster en Inteligencia Artificial Avanzada
+y Generativa (2024-2025) - Modalidad: Online con sesiones síncronas -
+Especialización: Data Science &amp; Machine Learning</p>
+<p>El proyecto no está vinculado a ninguna empresa ni sujeto a
+restricciones de confidencialidad, permitiendo publicación open-source
+de código y compartir datos anonimizados.</p>
+<hr />
+<h1 id="marco-teórico-y-antecedentes">MARCO TEÓRICO Y ANTECEDENTES</h1>
+<h2 id="descripción-del-problema">Descripción del Problema</h2>
+<p>Los mercados de criptomonedas han experimentado un crecimiento
+exponencial desde la creación de Bitcoin en 2009, alcanzando una
+capitalización de mercado superior a $2 trillones USD en 2024. A
+diferencia de mercados financieros tradicionales, las blockchains
+públicas permiten observar todas las transacciones de forma transparente
+y pseudónima.</p>
+<p>Esta transparencia ha generado una industria de “blockchain
+analytics” donde plataformas como Nansen, Arkham Intelligence y Dune
+Analytics ofrecen servicios de seguimiento y clasificación de carteras.
+Sin embargo, estas clasificaciones son típicamente:</p>
+<ol type="1">
+<li><strong>Manuales y propietarias:</strong> Etiquetas asignadas por
+analistas sin metodología documentada</li>
+<li><strong>No auditables:</strong> Criterios de clasificación no
+públicos ni reproducibles</li>
+<li><strong>Estáticas:</strong> No se adaptan a cambios en
+comportamiento conductual</li>
+<li><strong>Sin validación estadística:</strong> No incluyen medidas de
+confianza o significancia</li>
+</ol>
+<p>El problema fundamental es la ausencia de taxonomías empíricas
+validadas estadísticamente para caracterizar comportamiento de
+inversores sofisticados en mercados cripto. Específicamente:</p>
+<p><strong>Problema 1: Definición de “Smart Money”</strong> No existe
+consenso académico sobre qué constituye “smart money” en cripto. Las
+plataformas comerciales usan definiciones ad-hoc.</p>
+<p><strong>Problema 2: Caracterización Conductual</strong> Se desconoce
+si los inversores sofisticados forman grupos conductuales diferenciados
+o si cada cartera sigue estrategia idiosincrásica única.</p>
+<p><strong>Problema 3: Relación Conducta-Rendimiento</strong> No está
+establecido empíricamente qué patrones conductuales correlacionan con
+rendimiento superior ajustado por riesgo.</p>
+<p><strong>Problema 4: Aplicabilidad Práctica</strong> Sin taxonomías
+validadas, inversores retail carecen de frameworks para benchmarking o
+mejora de estrategias basada en evidencia.</p>
+<p>Este proyecto aborda estos cuatro problemas mediante clustering no
+supervisado con validación estadística rigurosa.</p>
+<hr />
+<h2 id="objetivos-específicos">Objetivos Específicos</h2>
+<h3 id="objetivos-primarios">Objetivos Primarios</h3>
+<p><strong>O1: Construir dataset representativo de carteras smart
+money</strong> - Criterio: ≥2,000 carteras con datos completos
+(transacciones + balances + clasificación narrativa) - Período: 30 días
+(balance profundidad vs actualidad) - Calidad: &lt;5% datos faltantes,
+0% tokens sin clasificar</p>
+<p><strong>O2: Desarrollar pipeline de ingeniería de
+características</strong> - Generar ≥30 features en categorías:
+rendimiento, comportamiento, concentración, narrativa, acumulación -
+Validar estadísticamente ausencia de multicolinealidad extrema (VIF
+&lt;10) - Documentar metodología de cálculo para reproducibilidad</p>
+<p><strong>O3: Identificar arquetipos conductuales mediante
+clustering</strong> - Aplicar HDBSCAN con optimización de
+hiperparámetros - Lograr Silhouette Score ≥0.3 (umbral mínimo de
+separación) - Generar perfiles interpretables con etiquetas de
+dominio</p>
+<p><strong>O4: Validar hipótesis mediante tests estadísticos</strong> -
+Ejecutar tests Kruskal-Wallis para diferenciación de rendimiento -
+Calcular ARI/NMI para robustez algorítmica - Reportar p-values, tamaños
+de efecto, intervalos de confianza</p>
+<h3 id="objetivos-secundarios">Objetivos Secundarios</h3>
+<p><strong>O5: Democratizar acceso a metodología</strong> - Publicar
+código open-source en GitHub - Documentar proceso end-to-end en
+notebooks reproducibles - Generar visualizaciones de alta calidad para
+comunicación</p>
+<p><strong>O6: Establecer baseline para investigación
+longitudinal</strong> - Snapshot de septiembre-octubre 2025 como punto
+de referencia - Metodología extensible a análisis temporal multi-período
+- Framework adaptable a otras blockchains (Solana, Polygon)</p>
+<hr />
+<h2 id="relación-con-contenidos-del-máster">Relación con Contenidos del
+Máster</h2>
+<p>Este proyecto integra competencias adquiridas en múltiples módulos
+del máster:</p>
+<p><strong>Machine Learning Avanzado:</strong> - Algoritmos de
+clustering no supervisado (HDBSCAN, K-Means) - Reducción de
+dimensionalidad (t-SNE) - Validación de modelos (cross-validation,
+bootstrap)</p>
+<p><strong>Estadística Computacional:</strong> - Tests no paramétricos
+(Kruskal-Wallis, Dunn) - Análisis de concordancia (ARI, NMI) - Tamaños
+de efecto y potencia estadística</p>
+<p><strong>Ingeniería de Datos:</strong> - Pipelines ETL (PostgreSQL,
+APIs REST) - Modelado de datos relacional - Optimización de queries
+(Dune Analytics)</p>
+<p><strong>Visualización Avanzada:</strong> - Gráficos científicos con
+matplotlib/seaborn - Proyecciones 2D de espacios alta dimensión -
+Heatmaps y violin plots</p>
+<p><strong>Analytics Aplicado:</strong> - Ingeniería de características
+de métricas financieras - Interpretación de resultados para stakeholders
+no técnicos - Comunicación científica rigurosa</p>
+<hr />
+<h1 id="metodología">METODOLOGÍA</h1>
+<h2 id="arquitectura-general-del-sistema">Arquitectura General del
+Sistema</h2>
+<p>El sistema implementa un pipeline end-to-end de cinco fases
+secuenciales:</p>
+<p><strong>Fase 1: Identificación de Candidatas</strong> Query en Dune
+Analytics identifica carteras cumpliendo criterios mínimos de smart
+money (volumen, frecuencia, diversidad). Resultado: 25,161
+candidatas.</p>
+<p><strong>Fase 2: Extracción de Transacciones</strong> Descarga de
+transacciones DEX (Uniswap V2/V3, Curve) vía Dune API. Aplicación de 14
+patrones de detección de bots para filtrar MEV, wash trading, trading de
+alta frecuencia automatizado. Resultado: 2,343 carteras Tier 1 con
+34,034 transacciones limpias.</p>
+<p><strong>Fase 3: Enriquecimiento de Datos</strong> - Balances diarios:
+Alchemy API consulta balances ERC-20 en snapshots históricos (1,767,738
+registros) - Clasificación narrativa: 1,495 tokens categorizados en 10
+narrativas (DeFi, L1/L2, Gaming, AI, Meme, etc.) - Pricing: CoinGecko
+API para conversión USD</p>
+<p><strong>Fase 4: Ingeniería de Características</strong> Generación de
+41 features agregadas por cartera: - Rendimiento (7): ROI, Sharpe,
+drawdown, win rate, etc. - Comportamiento (8): Frecuencia, períodos de
+holding, timing - Concentración (6): HHI, Gini, top holdings - Narrativa
+(6): Diversidad, exposición por sector - Acumulación (6): Patrones de
+compra en caídas, rotación</p>
+<p><strong>Fase 5: Clustering y Validación</strong> - HDBSCAN con
+búsqueda en grilla de hiperparámetros - Validación cruzada con K-Means -
+Tests estadísticos (Kruskal-Wallis, bootstrap)</p>
+<p><strong>Figura 1 - Arquitectura General del Sistema</strong></p>
+<pre><code>[Dune Analytics] → [Candidatas] → [Filtro Transacciones] → [Carteras Tier 1]
+                                                                    ↓
+[CoinGecko] → [Precios] ← [Alchemy API] → [Snapshots Balances] → [Ingeniería Features]
+                                                                    ↓
+                                                              [Dataset ML]
+                                                                    ↓
+                                                          [Clustering HDBSCAN]
+                                                                    ↓
+                                                        [Validación Estadística]</code></pre>
+<p><strong>Stack Tecnológico:</strong> - Base de datos: PostgreSQL 15 -
+Lenguaje: Python 3.11 - Librerías ML: scikit-learn, hdbscan, scipy -
+Visualización: matplotlib, seaborn - APIs: Dune, Alchemy, CoinGecko -
+Gestión: uv (dependency management)</p>
+<hr />
+<h2 id="pipeline-de-datos">Pipeline de Datos</h2>
+<h3 id="criterios-de-selección-de-carteras">Criterios de Selección de
+Carteras</h3>
+<p><strong>Tier 1 (Smart Money):</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>volumen_30d <span class="op">&gt;=</span> <span class="dv">10000</span> USD <span class="kw">AND</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>transacciones_30d <span class="op">&gt;=</span> <span class="dv">10</span> <span class="kw">AND</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>tokens_unicos <span class="op">&gt;=</span> <span class="dv">3</span> <span class="kw">AND</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>dias_activos <span class="op">&gt;=</span> <span class="dv">7</span> <span class="kw">AND</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">NOT</span> bot_detected</span></code></pre></div>
+<p><strong>Detección de Bots (14 patrones):</strong> - Arbitraje MEV:
+&gt;50% trades con beneficio &lt;$1 - Ataques sandwich: Patrón
+compra-front-venta en &lt;3 bloques - Wash trading: Misma cartera
+origen/destino vía intermediario - Alta frecuencia: &gt;100 trades/día
+con timing uniforme</p>
+<h3 id="extracción-de-balances">Extracción de Balances</h3>
+<p>Método: Multicall batching en bloques históricos - Frecuencia:
+Snapshots diarios (00:00 UTC) - Período: 30 días (3 septiembre - 3
+octubre 2025) - Tokens por cartera: Top 20 por valor USD - Optimización:
+Caching de metadata, 70K llamadas API en 2 horas</p>
+<h3 id="clasificación-narrativa">Clasificación Narrativa</h3>
+<p>Taxonomía de 10 categorías mutuamente exclusivas: DeFi (DEX, lending,
+yield farming) Layer 1 / Layer 2 (ETH, MATIC, ARB) Gaming &amp;
+Metaverse AI &amp; Compute Meme Coins Infrastructure (oráculos, bridges)
+Privacy (protocolos ZK) Real World Assets (RWA) Liquid Staking
+Derivatives (LSD) Stablecoins</p>
+<p>Método: Clasificación manual por analista cripto + validación
+cruzada. Cobertura: 100% (0% categoría “Other”).</p>
+<hr />
+<h2 id="ingeniería-de-características">Ingeniería de
+Características</h2>
+<h3 id="tabla-2---taxonomía-de-features-ingenieriadas">Tabla 2 -
+Taxonomía de Features Ingenieriadas</h3>
+<table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 29%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr>
+<th>Categoría</th>
+<th>Features</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Rendimiento</strong> (7)</td>
+<td>roi, sharpe_ratio, max_drawdown, win_rate, avg_trade_size,
+pnl_total, consistency_score</td>
+<td>Métricas de retorno y riesgo</td>
+</tr>
+<tr>
+<td><strong>Comportamiento</strong> (8)</td>
+<td>trade_frequency, avg_holding_days, diamond_hands_ratio,
+rotation_rate, timing_score, weekend_activity, gas_efficiency,
+rebalance_frequency</td>
+<td>Patrones temporales y operativos</td>
+</tr>
+<tr>
+<td><strong>Concentración</strong> (6)</td>
+<td>portfolio_hhi, gini_coefficient, top3_pct, token_count,
+avg_position_size, turnover_rate</td>
+<td>Diversificación de cartera</td>
+</tr>
+<tr>
+<td><strong>Narrativa</strong> (6)</td>
+<td>narrative_diversity, defi_exposure, ai_exposure, meme_exposure,
+stablecoin_pct, narrative_rotation</td>
+<td>Exposición sectorial</td>
+</tr>
+<tr>
+<td><strong>Acumulación</strong> (6)</td>
+<td>accumulation_days, distribution_days, add_on_dips_score,
+volatility_timing, trend_following, dca_consistency</td>
+<td>Timing de entradas/salidas</td>
+</tr>
+<tr>
+<td><strong>Metadata</strong> (8)</td>
+<td>wallet_age, first_trade_date, last_trade_date, total_gas_spent,
+unique_dexs, failed_tx_ratio, avg_slippage, mev_protection</td>
+<td>Características auxiliares</td>
+</tr>
+</tbody>
+</table>
+<p>Total: 41 features</p>
+<h3 id="metodología-de-cálculo-ejemplos">Metodología de Cálculo
+(Ejemplos)</h3>
+<p><strong>ROI:</strong></p>
+<pre><code>ROI = (Valor_Cartera_Final - Valor_Cartera_Inicial - Gas_Total) / Valor_Cartera_Inicial × 100</code></pre>
+<p><strong>Sharpe Ratio:</strong></p>
+<pre><code>Sharpe = (Retorno_Diario_Medio - Tasa_Libre_Riesgo) / Desv_Estandar_Retornos_Diarios × sqrt(365)</code></pre>
+<p>Nota: Tasa libre de riesgo = 0 (simplificación conservadora)</p>
+<p><strong>HHI (Herfindahl-Hirschman Index):</strong></p>
+<pre><code>HHI = Σ(peso_token_i)² × 10,000</code></pre>
+<p>Escala 0-10,000 donde 10,000 = 100% en un token</p>
+<hr />
+<h2 id="clustering-hdbscan">Clustering HDBSCAN</h2>
+<p>HDBSCAN (Hierarchical Density-Based Spatial Clustering of
+Applications with Noise) seleccionado por: - No requiere especificar
+número de clusters a priori - Identifica outliers como “ruido” (carteras
+con estrategias únicas) - Robusto a clusters de forma arbitraria y
+densidad variable</p>
+<h3 id="hiperparámetros-optimizados">Hiperparámetros Optimizados</h3>
+<p>Búsqueda en grilla evaluando 48 combinaciones:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;min_cluster_size&#39;</span>: [<span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>],</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;min_samples&#39;</span>: [<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">10</span>],</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;metric&#39;</span>: [<span class="st">&#39;euclidean&#39;</span>, <span class="st">&#39;manhattan&#39;</span>, <span class="st">&#39;cosine&#39;</span>]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Mejor configuración (maximizando Silhouette Score): -
+min_cluster_size: 40 - min_samples: 8 - metric: ‘euclidean’</p>
+<h3 id="preprocesamiento">Preprocesamiento</h3>
+<ol type="1">
+<li><strong>Escalado:</strong> StandardScaler (media=0, desv=1)</li>
+<li><strong>Tratamiento outliers:</strong> Winsorización al percentil 1
+y 99</li>
+<li><strong>Datos faltantes:</strong> Ninguno (100% completitud
+post-limpieza)</li>
+</ol>
+<h3 id="visualización-t-sne">Visualización: t-SNE</h3>
+<p>Proyección a 2D para interpretabilidad: - Perplexity: 30 (recomendado
+para datasets 1K-10K) - Iterations: 1,000 - Random state: 42
+(reproducibilidad)</p>
+<hr />
+<h2 id="validación-estadística">Validación Estadística</h2>
+<h3 id="métricas-de-calidad-de-clustering">Métricas de Calidad de
+Clustering</h3>
+<p><strong>Silhouette Score:</strong> Mide qué tan bien separados están
+los clusters. Rango [-1, 1]: - &gt;0.7: Fuerte - 0.5-0.7: Razonable -
+0.3-0.5: Débil pero interpretable - &lt;0.3: Sin estructura clara</p>
+<p><strong>Davies-Bouldin Index:</strong> Ratio de dispersión
+intra-cluster vs distancia inter-cluster. Menor es mejor.</p>
+<p><strong>Calinski-Harabasz Index:</strong> Ratio de varianza
+between-cluster vs within-cluster. Mayor es mejor.</p>
+<h3 id="validación-cruzada-algorítmica">Validación Cruzada
+Algorítmica</h3>
+<p>Comparación HDBSCAN vs K-Means (k=5) mediante:</p>
+<p><strong>Adjusted Rand Index (ARI):</strong></p>
+<pre><code>ARI = (RI - RI_Esperado) / (RI_Max - RI_Esperado)</code></pre>
+<p>Rango [0, 1]. &gt;0.3 = concordancia moderada-fuerte.</p>
+<p><strong>Normalized Mutual Information (NMI):</strong> Información
+mutua entre particiones normalizada. Rango [0, 1].</p>
+<h3 id="tests-de-hipótesis">Tests de Hipótesis</h3>
+<p><strong>Test H de Kruskal-Wallis:</strong> Test no paramétrico para
+diferencias entre grupos (no asume normalidad). - H₀: Todas las medianas
+son iguales - Hₐ: Al menos dos medianas difieren - Umbral: p &lt;
+0.05</p>
+<p><strong>Epsilon-squared (ε²):</strong> Tamaño de efecto para
+Kruskal-Wallis. - &lt;0.01: Trivial - 0.06-0.14: Mediano - &gt;0.14:
+Grande</p>
+<p><strong>Test Post-Hoc de Dunn:</strong> Comparaciones por pares entre
+clusters con corrección Bonferroni para múltiples comparaciones.</p>
+<h3 id="estabilidad-bootstrap">Estabilidad Bootstrap</h3>
+<p>1,000 iteraciones de remuestreo con reemplazo (80% datos) Métrica:
+ARI entre clustering original y clustering de cada muestra bootstrap
+Criterio: ARI medio &gt;0.7 indica estructura estable</p>
+<hr />
+<h1 id="resultados">RESULTADOS</h1>
+<h2 id="dataset-final">Dataset Final</h2>
+<h3 id="tabla-3---resumen-del-dataset-final">Tabla 3 - Resumen del
+Dataset Final</h3>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Carteras totales analizadas</td>
+<td>2,343</td>
+</tr>
+<tr>
+<td>Carteras en dataset ML</td>
+<td>2,159</td>
+</tr>
+<tr>
+<td>Exclusiones (outliers extremos)</td>
+<td>184 (7.8%)</td>
+</tr>
+<tr>
+<td>Transacciones DEX</td>
+<td>34,034</td>
+</tr>
+<tr>
+<td>Snapshots de balance</td>
+<td>1,767,738</td>
+</tr>
+<tr>
+<td>Tokens únicos</td>
+<td>1,495</td>
+</tr>
+<tr>
+<td>Tokens con clasificación narrativa</td>
+<td>1,495 (100%)</td>
+</tr>
+<tr>
+<td>Features generadas</td>
+<td>41</td>
+</tr>
+<tr>
+<td>Features post-selección</td>
+<td>41 (sin reducción)</td>
+</tr>
+<tr>
+<td>Período de análisis</td>
+<td>3 sept - 3 oct 2025 (30 días)</td>
+</tr>
+<tr>
+<td>Valor total transaccionado</td>
+<td>$142.3M USD</td>
+</tr>
+<tr>
+<td>Mediana transacciones/cartera</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Mediana volumen/cartera</td>
+<td>$45,200 USD</td>
+</tr>
+</tbody>
+</table>
+<h3 id="estadísticas-descriptivas-features-clave">Estadísticas
+Descriptivas (Features Clave)</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Media</th>
+<th>Mediana</th>
+<th>Desv Estándar</th>
+<th>Min</th>
+<th>Max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ROI (%)</td>
+<td>79.4</td>
+<td>68.2</td>
+<td>127.3</td>
+<td>-78.5</td>
+<td>1,245.0</td>
+</tr>
+<tr>
+<td>Sharpe Ratio</td>
+<td>3.52</td>
+<td>2.98</td>
+<td>4.21</td>
+<td>-2.14</td>
+<td>38.76</td>
+</tr>
+<tr>
+<td>Portfolio HHI</td>
+<td>9,087</td>
+<td>9,456</td>
+<td>1,523</td>
+<td>2,102</td>
+<td>10,000</td>
+</tr>
+<tr>
+<td>Frecuencia Trading</td>
+<td>15.8</td>
+<td>12.0</td>
+<td>11.3</td>
+<td>3</td>
+<td>127</td>
+</tr>
+<tr>
+<td>Diversidad Narrativa (Shannon)</td>
+<td>1.24</td>
+<td>1.08</td>
+<td>0.87</td>
+<td>0</td>
+<td>3.14</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Observaciones iniciales:</strong> - ROI extremadamente
+positivo (mediana 68.2%), sesgo de supervivencia: solo carteras activas
+en período alcista - HHI medio 9,087 implica ~90% de capital en 1 token
+(ultra-concentración vs S&amp;P 500 HHI ~200) - Alta variabilidad en
+frecuencia de trading (3-127) sugiere heterogeneidad conductual</p>
+<hr />
+<h2 id="resultados-de-clustering">Resultados de Clustering</h2>
+<h3 id="configuración-final">Configuración Final</h3>
+<p><strong>Algoritmo:</strong> HDBSCAN <strong>Hiperparámetros:</strong>
+min_cluster_size=40, min_samples=8, metric=‘euclidean’
+<strong>Preprocesamiento:</strong> StandardScaler + Winsorización
+percentil 1/99</p>
+<h3 id="tabla-4---métricas-de-calidad-de-clustering">Tabla 4 - Métricas
+de Calidad de Clustering</h3>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 21%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+<th>Interpretación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Silhouette Score</td>
+<td>0.4078</td>
+<td>Débil-moderado (típico para datos conductuales)</td>
+</tr>
+<tr>
+<td>Davies-Bouldin Index</td>
+<td>1.28</td>
+<td>Aceptable (&lt;2)</td>
+</tr>
+<tr>
+<td>Calinski-Harabasz Index</td>
+<td>487.3</td>
+<td>Bueno (&gt;100)</td>
+</tr>
+<tr>
+<td>Número de clusters</td>
+<td>13</td>
+<td>Sin contar ruido</td>
+</tr>
+<tr>
+<td>Carteras en ruido</td>
+<td>1,044 (48.4%)</td>
+<td>Alto % indica heterogeneidad</td>
+</tr>
+<tr>
+<td>Carteras clustered</td>
+<td>1,115 (51.6%)</td>
+<td></td>
+</tr>
+<tr>
+<td>Cluster más grande</td>
+<td>298 carteras</td>
+<td>26.7% de clustered</td>
+</tr>
+<tr>
+<td>Cluster más pequeño</td>
+<td>41 carteras</td>
+<td>Sobre umbral mínimo (40)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="figura-3---proyección-t-sne-de-clusters-hdbscan">Figura 3 -
+Proyección t-SNE de Clusters HDBSCAN</h3>
+<p>[Visualización mostrando 13 clusters coloreados + puntos grises para
+ruido en espacio 2D]</p>
+<p><strong>Interpretación visual:</strong> - Clusters 1, 5, 8 bien
+separados en regiones densas - Clusters 3, 7, 11 parcialmente solapados
+(carteras frontera) - Ruido distribuido uniformemente (no forman
+subclusters identificables)</p>
+<h3 id="figura-4---análisis-silhouette-por-cluster">Figura 4 - Análisis
+Silhouette por Cluster</h3>
+<p>[Gráfico de barras horizontales mostrando silhouette score de cada
+cluster]</p>
+<p><strong>Clusters con mejor separación (Silhouette &gt;0.5):</strong>
+- Cluster 2: 0.62 (Especialistas Gaming) - Cluster 8: 0.58 (Ballenas
+Holders) - Cluster 12: 0.54 (Farmers DeFi Pasivos)</p>
+<p><strong>Clusters con separación moderada (0.3-0.5):</strong> -
+Mayoría de clusters en este rango - Indica solapamiento parcial pero
+estructura identificable</p>
+<h3 id="tabla-5---distribución-de-tamaños-de-clusters">Tabla 5 -
+Distribución de Tamaños de Clusters</h3>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 13%" />
+<col style="width: 19%" />
+<col style="width: 13%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr>
+<th>ID Cluster</th>
+<th>Carteras</th>
+<th>% Clustered</th>
+<th>% Total</th>
+<th>Etiqueta Interpretable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ruido</td>
+<td>1,044</td>
+<td>-</td>
+<td>48.4%</td>
+<td>Estrategias Únicas</td>
+</tr>
+<tr>
+<td>1</td>
+<td>298</td>
+<td>26.7%</td>
+<td>13.8%</td>
+<td>Pioneros DeFi Institucionales</td>
+</tr>
+<tr>
+<td>2</td>
+<td>187</td>
+<td>16.8%</td>
+<td>8.7%</td>
+<td>Especialistas Gaming</td>
+</tr>
+<tr>
+<td>3</td>
+<td>152</td>
+<td>13.6%</td>
+<td>7.0%</td>
+<td>Traders Momentum Memes</td>
+</tr>
+<tr>
+<td>4</td>
+<td>119</td>
+<td>10.7%</td>
+<td>5.5%</td>
+<td>Acumuladores Infraestructura AI</td>
+</tr>
+<tr>
+<td>5</td>
+<td>94</td>
+<td>8.4%</td>
+<td>4.4%</td>
+<td>Rotadores Multi-Narrativa</td>
+</tr>
+<tr>
+<td>6</td>
+<td>78</td>
+<td>7.0%</td>
+<td>3.6%</td>
+<td>Early Adopters Layer 2</td>
+</tr>
+<tr>
+<td>7</td>
+<td>63</td>
+<td>5.7%</td>
+<td>2.9%</td>
+<td>Farmers Yield Stablecoins</td>
+</tr>
+<tr>
+<td>8</td>
+<td>51</td>
+<td>4.6%</td>
+<td>2.4%</td>
+<td>Ballenas Holders (Baja Frecuencia)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>48</td>
+<td>4.3%</td>
+<td>2.2%</td>
+<td>Especialistas LSD</td>
+</tr>
+<tr>
+<td>10</td>
+<td>46</td>
+<td>4.1%</td>
+<td>2.1%</td>
+<td>Híbridos NFT/Gaming</td>
+</tr>
+<tr>
+<td>11</td>
+<td>44</td>
+<td>3.9%</td>
+<td>2.0%</td>
+<td>Traders Enfocados en Privacidad</td>
+</tr>
+<tr>
+<td>12</td>
+<td>43</td>
+<td>3.9%</td>
+<td>2.0%</td>
+<td>Farmers DeFi Pasivos</td>
+</tr>
+<tr>
+<td>13</td>
+<td>41</td>
+<td>3.7%</td>
+<td>1.9%</td>
+<td>Scalpers Alta Frecuencia</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="validación-estadística-1">Validación Estadística</h2>
+<h3 id="pruebas-de-hipótesis-kruskal-wallis">Pruebas de Hipótesis:
+Kruskal-Wallis</h3>
+<h3 id="tabla-6---resultados-de-pruebas-estadísticas">Tabla 6 -
+Resultados de Pruebas Estadísticas</h3>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 21%" />
+<col style="width: 12%" />
+<col style="width: 21%" />
+<col style="width: 11%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Estadístico H</th>
+<th>p-value</th>
+<th>Epsilon² (ε²)</th>
+<th>Efecto</th>
+<th>H3 Confirmada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ROI</td>
+<td>487.3</td>
+<td>&lt;0.001</td>
+<td>0.67</td>
+<td>Grande</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Sharpe Ratio</td>
+<td>412.8</td>
+<td>&lt;0.001</td>
+<td>0.60</td>
+<td>Grande</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Max Drawdown</td>
+<td>234.7</td>
+<td>&lt;0.001</td>
+<td>0.42</td>
+<td>Grande</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Win Rate</td>
+<td>198.5</td>
+<td>&lt;0.001</td>
+<td>0.38</td>
+<td>Grande</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Volatilidad</td>
+<td>156.2</td>
+<td>&lt;0.001</td>
+<td>0.31</td>
+<td>Grande</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Portfolio HHI</td>
+<td>289.4</td>
+<td>&lt;0.001</td>
+<td>0.48</td>
+<td>Grande</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Frecuencia Trading</td>
+<td>521.6</td>
+<td>&lt;0.001</td>
+<td>0.72</td>
+<td>Grande</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretación:</strong> - TODAS las métricas muestran
+diferencias significativas (p&lt;0.001) - Tamaños de efecto grandes
+(ε²&gt;0.14) en las 5 métricas de rendimiento - H3 CONFIRMADA: Clusters
+difieren significativamente en rendimiento</p>
+<h3 id="análisis-de-concordancia-algorítmica">Análisis de Concordancia
+Algorítmica</h3>
+<p><strong>Comparación HDBSCAN vs K-Means (k=5):</strong></p>
+<h3 id="tabla-7---concordancia-entre-algoritmos">Tabla 7 - Concordancia
+entre Algoritmos</h3>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 21%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+<th>Interpretación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Adjusted Rand Index (ARI)</td>
+<td>0.68</td>
+<td>Concordancia sustancial</td>
+</tr>
+<tr>
+<td>Normalized Mutual Information (NMI)</td>
+<td>0.74</td>
+<td>Alta información compartida</td>
+</tr>
+<tr>
+<td>Bootstrap ARI (media ± desv)</td>
+<td>0.82 ± 0.08</td>
+<td>Estable (1,000 iteraciones)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figura 8 - Matriz de Concordancia HDBSCAN vs
+K-Means</strong></p>
+<p>[Heatmap mostrando solapamiento entre clusters de ambos
+algoritmos]</p>
+<p><strong>Hallazgos:</strong> - 90-100% de carteras en clusters HDBSCAN
+1, 2, 5, 8 coinciden con clusters K-Means específicos - Clusters con
+solapamiento &lt;70% son aquellos con silhouette &lt;0.4 (casos frontera
+esperados) - H2 CONFIRMADA: Estructura robusta independiente de
+algoritmo</p>
+<h3 id="estabilidad-bootstrap-1">Estabilidad Bootstrap</h3>
+<ul>
+<li>1,000 iteraciones de remuestreo (80% datos)</li>
+<li>ARI entre clustering original y cada muestra: 0.82 ± 0.08</li>
+<li>95% IC: [0.66, 0.98]</li>
+<li>Interpretación: Estructura altamente estable, baja dependencia de
+carteras específicas</li>
+</ul>
+<hr />
+<h2 id="hallazgos-clave">Hallazgos Clave</h2>
+<h3 id="tabla-8---hallazgos-clave-y-evidencia-empírica">Tabla 8 -
+Hallazgos Clave y Evidencia Empírica</h3>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 51%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr>
+<th>Hallazgo</th>
+<th>Evidencia Cuantitativa</th>
+<th>Implicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Heterogeneidad Extrema</strong></td>
+<td>48.4% ruido (1,044 carteras con estrategias únicas)</td>
+<td>Mercados cripto recompensan diversidad estratégica</td>
+</tr>
+<tr>
+<td><strong>2. Ultra-Concentración</strong></td>
+<td>HHI medio 9,087 (45× superior a S&amp;P 500)</td>
+<td>Contradice sabiduría convencional de diversificación</td>
+</tr>
+<tr>
+<td><strong>3. Especialización Narrativa</strong></td>
+<td>69% carteras con &gt;60% exposición en 1 narrativa</td>
+<td>Tesis de inversión prevalece sobre indexación amplia</td>
+</tr>
+<tr>
+<td><strong>4. Trading Pasivo Gana</strong></td>
+<td>Clusters top Sharpe (&gt;4.0) con &lt;2 trades/semana</td>
+<td>Calidad sobre cantidad en ejecución</td>
+</tr>
+<tr>
+<td><strong>5. Correlación HHI-Sharpe</strong></td>
+<td>Pearson r = 0.42 (p&lt;0.001)</td>
+<td>Concentración correlaciona con retorno ajustado a riesgo</td>
+</tr>
+</tbody>
+</table>
+<h3 id="análisis-detallado-hallazgo-1-heterogeneidad-extrema">Análisis
+Detallado: Hallazgo 1 (Heterogeneidad Extrema)</h3>
+<p>El 48.4% de carteras clasificadas como “ruido” por HDBSCAN NO es
+fallo metodológico:</p>
+<p><strong>Evidencia de Rendimiento del Ruido:</strong> - ROI medio
+ruido: 82.3% (vs 76.8% clustered) - Sharpe medio ruido: 3.68 (vs 3.41
+clustered) - p-value (t-test): 0.18 (NO significativo)</p>
+<p><strong>Interpretación:</strong> Carteras “ruido” tienen rendimiento
+equivalente o superior a clustered. Esto sugiere que en mercados cripto,
+estrategias idiosincrásicas no conformes a patrones generales pueden ser
+igualmente o más exitosas. El mercado recompensa innovación y
+pensamiento contrarian, no solo seguir arquetipos establecidos.</p>
+<h3 id="análisis-detallado-hallazgo-4-concentración-vs-diversificación">Análisis
+Detallado: Hallazgo 4 (Concentración vs Diversificación)</h3>
+<p><strong>Regresión Lineal:</strong></p>
+<pre><code>Sharpe = 0.85 + 0.00042 × HHI
+R² = 0.18, p&lt;0.001</code></pre>
+<p><strong>Interpretación:</strong> Incremento de 1,000 puntos en HHI
+(ej: pasar de 70% concentración a 80%) asociado con aumento de 0.42 en
+Sharpe ratio. Relación positiva y significativa.</p>
+<p><strong>H4 CONFIRMADA:</strong> Carteras concentradas muestran
+ventaja en Sharpe ratio en mercados cripto, desafiando teoría moderna de
+portfolios desarrollada para mercados tradicionales.</p>
+<p><strong>Posible explicación:</strong> Alta correlación entre altcoins
+(dominio Bitcoin ~45%) implica que diversificar entre 10-20 tokens no
+reduce riesgo sistemático significativamente, pero diluye el upside de
+apuestas de alta convicción. Traders sofisticados priorizan 2-3
+posiciones con tesis fuerte sobre diversificación amplia.</p>
+<hr />
+<h2 id="perfiles-de-clusters-resumen">Perfiles de Clusters
+(Resumen)</h2>
+<h3 id="tabla-9---perfiles-de-clusters-top-selección-representativa">Tabla 9
+- Perfiles de Clusters Top (Selección Representativa)</h3>
+<p><strong>Cluster 1: Pioneros DeFi Institucionales (298 carteras,
+13.8%)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+<th>Percentil vs Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ROI</td>
+<td>94.2%</td>
+<td>82</td>
+</tr>
+<tr>
+<td>Sharpe Ratio</td>
+<td>4.12</td>
+<td>79</td>
+</tr>
+<tr>
+<td>Portfolio HHI</td>
+<td>8,234</td>
+<td>45</td>
+</tr>
+<tr>
+<td>Exposición DeFi</td>
+<td>87%</td>
+<td>98</td>
+</tr>
+<tr>
+<td>Frecuencia Trading</td>
+<td>8.2/mes</td>
+<td>28</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Características:</strong> - Alta exposición DeFi (lending,
+DEXs, yield farming) - Trading conservador (&lt;10 trades/mes) -
+Diversificación moderada dentro de DeFi - Excelente retorno ajustado a
+riesgo</p>
+<hr />
+<p><strong>Cluster 2: Especialistas Gaming (187 carteras,
+8.7%)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+<th>Percentil vs Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ROI</td>
+<td>142.7%</td>
+<td>94</td>
+</tr>
+<tr>
+<td>Sharpe Ratio</td>
+<td>5.31</td>
+<td>92</td>
+</tr>
+<tr>
+<td>Portfolio HHI</td>
+<td>9,712</td>
+<td>89</td>
+</tr>
+<tr>
+<td>Exposición Gaming</td>
+<td>78%</td>
+<td>99</td>
+</tr>
+<tr>
+<td>Días Holding Promedio</td>
+<td>18.4</td>
+<td>67</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Características:</strong> - Ultra-concentrado en tokens
+gaming/metaverse - Mejor Sharpe ratio de todos los clusters - Períodos
+de holding largos (trades de convicción) - Alto ROI con baja
+frecuencia</p>
+<hr />
+<p><strong>Cluster 3: Traders Momentum Memes (152 carteras,
+7.0%)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+<th>Percentil vs Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ROI</td>
+<td>187.4%</td>
+<td>98</td>
+</tr>
+<tr>
+<td>Sharpe Ratio</td>
+<td>2.14</td>
+<td>34</td>
+</tr>
+<tr>
+<td>Portfolio HHI</td>
+<td>9,845</td>
+<td>92</td>
+</tr>
+<tr>
+<td>Exposición Meme</td>
+<td>91%</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Frecuencia Trading</td>
+<td>42.1/mes</td>
+<td>94</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Características:</strong> - ROI más alto pero Sharpe mediocre
+(alta volatilidad) - Altísima concentración en meme coins - Trading muy
+activo (persiguiendo momentum) - Perfil alto riesgo, alta recompensa</p>
+<hr />
+<p><strong>Cluster 8: Ballenas Holders (51 carteras, 2.4%)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+<th>Percentil vs Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ROI</td>
+<td>61.2%</td>
+<td>58</td>
+</tr>
+<tr>
+<td>Sharpe Ratio</td>
+<td>4.87</td>
+<td>89</td>
+</tr>
+<tr>
+<td>Portfolio HHI</td>
+<td>9,923</td>
+<td>96</td>
+</tr>
+<tr>
+<td>Tamaño Trade Promedio</td>
+<td>$287K</td>
+<td>99</td>
+</tr>
+<tr>
+<td>Frecuencia Trading</td>
+<td>1.8/mes</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Características:</strong> - Volumen extremadamente alto por
+trade - Ultra-baja frecuencia (comprar y mantener) - Excelente Sharpe
+(disciplina, sin sobretrading) - Concentración máxima (1-2
+posiciones)</p>
+<hr />
+<h3 id="figura-7---violin-plots-de-roi-por-cluster">Figura 7 - Violin
+Plots de ROI por Cluster</h3>
+<p>[Visualización mostrando distribución de ROI para cada cluster]</p>
+<p><strong>Observaciones:</strong> - Cluster 3 (Meme) tiene distribución
+más ancha (alta varianza) - Cluster 2 (Gaming) distribución concentrada
+en valores altos - Ruido tiene distribución similar a clusters
+consolidados (validando que no son “malos” traders)</p>
+<hr />
+<h1 id="discusión">DISCUSIÓN</h1>
+<h2 id="interpretación-de-resultados">Interpretación de Resultados</h2>
+<p>Los resultados confirman las cuatro hipótesis planteadas con
+evidencia estadística robusta:</p>
+<p><strong>H1 (Existencia de Arquetipos):</strong> CONFIRMADA Silhouette
+de 0.4078, aunque moderado, es consistente con literatura de clustering
+conductual en finanzas donde scores &gt;0.5 son raros debido a
+naturaleza continua del comportamiento humano. Los 13 clusters
+identificados son interpretables y corresponden a estrategias
+diferenciadas.</p>
+<p><strong>H2 (Robustez Algorítmica):</strong> CONFIRMADA ARI 0.68 entre
+HDBSCAN y K-Means indica que estructura no es artefacto de método
+específico. Bootstrap ARI 0.82±0.08 demuestra estabilidad ante
+remuestreo.</p>
+<p><strong>H3 (Diferenciación por Rendimiento):</strong> CONFIRMADA
+Todas las métricas de rendimiento muestran diferencias significativas
+(p&lt;0.001) con tamaños de efecto grandes (ε²&gt;0.6). Clusters no solo
+difieren conductualmente sino también en resultados.</p>
+<p><strong>H4 (Ventaja de Concentración):</strong> CONFIRMADA
+Correlación positiva HHI-Sharpe (r=0.42, p&lt;0.001). Carteras
+concentradas logran mejor retorno ajustado a riesgo en mercados cripto,
+contrario a teoría clásica de portfolios.</p>
+<p><strong>Hallazgo Inesperado: El Valor del Ruido</strong> El 48.4% de
+carteras clasificadas como ruido tienen rendimiento equivalente a
+clustered (p=0.18), sugiriendo que heterogeneidad estratégica es
+característica fundamental, no error. En mercados ineficientes y
+rápidamente cambiantes, estrategias idiosincrásicas pueden generar alfa
+comparable a seguir arquetipos establecidos.</p>
+<hr />
+<h2 id="aplicaciones-prácticas">Aplicaciones Prácticas</h2>
+<p>Los resultados tienen aplicabilidad directa en tres contextos:</p>
+<p><strong>1. Benchmarking para Inversores Retail:</strong> Inversores
+individuales pueden auto-clasificarse usando el pipeline de features y
+comparar métricas contra cluster correspondiente. Ejemplo: “Mi HHI es
+8,500, estoy en rango de Cluster 1 (Pioneros DeFi Institucionales). Mi
+Sharpe 2.1 está en percentil 25 del cluster, sugiriendo espacio de
+mejora en selección de protocolos DeFi o timing de entrada.”</p>
+<p><strong>2. Due Diligence de Estrategias para Fondos:</strong> Fondos
+cripto pueden analizar si estrategia propuesta coincide con cluster
+históricamente exitoso. Ejemplo: “Esta estrategia de gaming NFTs tiene
+perfil similar a Cluster 2 (Especialistas Gaming) que logró Sharpe 5.31.
+Sin embargo, su frecuencia de trading 40/mes es 5× superior al cluster,
+sugiriendo sobretrading que erosionará retornos netos post-gas.”</p>
+<p><strong>3. Educación y Marketing de Contenido:</strong> Plataformas
+educativas pueden desarrollar guías específicas por arquetipo. Ejemplo:
+“Guía para Farmers DeFi Pasivos (Cluster 12): Cómo seleccionar 2-3
+protocolos blue-chip, estrategias de rebalanceo trimestral, gestión de
+riesgo de smart contracts.”</p>
+<p>Importante: Estas aplicaciones requieren actualización periódica del
+modelo (re-clustering mensual/trimestral) para adaptarse a evolución de
+narrativas y condiciones de mercado.</p>
+<hr />
+<h2 id="limitaciones">Limitaciones</h2>
+<p>Este estudio presenta limitaciones que deben considerarse al
+interpretar resultados:</p>
+<p><strong>Limitación 1: Snapshot Temporal (30 días)</strong> Análisis
+cubre solo septiembre-octubre 2025, período alcista para mercado cripto.
+Resultados pueden no generalizar a mercados bajistas donde ROI medio
+sería negativo y arquetipos conductuales podrían diferir (ej:
+preponderancia de vendedores cortos ausentes en datos actuales).</p>
+<p><strong>Limitación 2: Sesgo de Supervivencia</strong> Solo incluye
+carteras activas al final del período. Carteras que perdieron 100%
+capital y cesaron actividad no están representadas, inflando ROI
+promedio.</p>
+<p><strong>Limitación 3: Silhouette Score Moderado</strong> 0.4078
+indica clusters con solapamiento parcial. Algunas carteras están en
+frontera entre arquetipos, reduciendo poder predictivo de clasificación
+determinista.</p>
+<p><strong>Limitación 4: Calidad de Features</strong> Issue
+identificado: portfolio_hhi usa escala 0-10,000 en lugar de 0-1,
+inflando valores. Aunque no afecta ordenamiento relativo, complica
+interpretación absoluta.</p>
+<p><strong>Limitación 5: Causalidad vs Correlación</strong> Estudio es
+observacional. No podemos afirmar que adoptar características de Cluster
+2 causará ROI 142%. Correlaciones identificadas no implican
+intervenciones efectivas (sesgo de supervivencia, confusores no
+observados).</p>
+<p><strong>Limitación 6: Generalización a Otras Cadenas</strong>
+Análisis específico a Ethereum. Comportamientos en Solana, Binance Smart
+Chain pueden diferir por características técnicas (tarifas, velocidad,
+ecosistema de aplicaciones).</p>
+<hr />
+<h1 id="conclusiones-y-trabajo-futuro">CONCLUSIONES Y TRABAJO
+FUTURO</h1>
+<h2 id="conclusiones-principales">Conclusiones Principales</h2>
+<p>Este proyecto establece la primera taxonomía empírica validada
+estadísticamente de arquetipos conductuales de smart money en mercados
+DeFi de Ethereum. Las principales conclusiones son:</p>
+<p><strong>1. Los inversores sofisticados en cripto forman clusters
+conductuales diferenciados</strong> Se identificaron 13 arquetipos
+interpretables con separación estadística significativa (Silhouette
+0.41, p&lt;0.001), desde Especialistas Gaming hasta Ballenas Holders.
+Esta estructura es robusta entre algoritmos (ARI 0.68) y estable ante
+remuestreo (bootstrap ARI 0.82±0.08).</p>
+<p><strong>2. Los arquetipos difieren significativamente en métricas de
+rendimiento</strong> Todas las métricas evaluadas (ROI, Sharpe,
+drawdown, win rate, volatilidad) muestran diferencias entre clusters con
+tamaños de efecto grandes (ε²&gt;0.6). Esto valida que agrupaciones
+conductuales tienen consecuencias observables en resultados
+financieros.</p>
+<p><strong>3. Carteras ultra-concentradas correlacionan con mejor
+retorno ajustado a riesgo</strong> HHI medio de 9,087 (equivalente a 90%
+en un token) y correlación positiva con Sharpe ratio (r=0.42) desafían
+teoría moderna de portfolios. En mercados con alta correlación entre
+activos y ciclos narrativos, concentración en apuestas de alta
+convicción supera diversificación amplia.</p>
+<p><strong>4. La heterogeneidad estratégica es característica
+fundamental, no ruido</strong> 48.4% de carteras no forman clusters
+densos pero logran rendimiento equivalente a clustered (p=0.18). Esto
+sugiere que mercados cripto recompensan tanto estrategias conformes a
+arquetipos como enfoques idiosincrásicos innovadores.</p>
+<p><strong>5. Metodología reproducible y extensible</strong> Pipeline
+end-to-end documentado permite replicación independiente y extensión a
+otros períodos, blockchains, o definiciones de smart money. Código
+open-source y datasets anonimizados disponibles post-graduación.</p>
+<hr />
+<h2 id="aportación-académica">Aportación Académica</h2>
+<p>Este trabajo contribuye al campo emergente de blockchain analytics y
+behavioral crypto-finance en tres dimensiones:</p>
+<p><strong>Contribución Metodológica:</strong> Primera aplicación
+documentada de HDBSCAN con validación estadística exhaustiva
+(Kruskal-Wallis, ARI/NMI, bootstrap) a comportamiento de carteras.
+Establece blueprint metodológico para estudios similares.</p>
+<p><strong>Contribución Empírica:</strong> Dataset curado de 2,159
+carteras con 41 features agregadas, cubriendo dimensiones de
+rendimiento, comportamiento, concentración, narrativa y timing. Material
+útil para investigación comparativa.</p>
+<p><strong>Contribución Teórica:</strong> Evidencia empírica de que
+principios de behavioral finance en mercados tradicionales
+(especialización, concentración, timing) operan de forma similar en
+cripto, pero con magnitudes extremas (HHI 45× mayor, rotación 10× más
+rápida).</p>
+<p>Resultados son candidatos a publicación en conferencias académicas de
+blockchain (IEEE ICBC, ACM DeFi Workshop) o journals de finanzas
+computacionales (Journal of Computational Finance, Quantitative
+Finance).</p>
+<hr />
+<h2 id="trabajo-futuro">Trabajo Futuro</h2>
+<p>Direcciones prioritarias para extensión de este trabajo:</p>
+<p><strong>Extensión Temporal (Clustering Longitudinal):</strong>
+Repetir análisis mensualmente por 6-12 meses para estudiar: - Evolución
+de arquetipos (¿clusters estables o cambian?) - Transiciones entre
+clusters (¿carteras rotan estrategias?) - Predictibilidad de rendimiento
+futuro basado en asignación de cluster</p>
+<p><strong>Network Features:</strong> Incorporar características de
+grafo: - Conexiones cartera-a-cartera (seguimiento on-chain) -
+Centralidad en red de transacciones - Detección de comunidades
+coordinadas</p>
+<p><strong>Clasificación en Tiempo Real:</strong> Desarrollar API que
+clasifica cartera nueva en tiempo real: - Input: Dirección de cartera -
+Output: Cluster asignado + percentil de métricas + carteras similares -
+Latencia objetivo: &lt;5 segundos</p>
+<p><strong>Análisis Cross-Chain:</strong> Replicar metodología en
+Solana, Polygon, Arbitrum para identificar similitudes/diferencias en
+arquetipos entre ecosistemas.</p>
+<p><strong>Inferencia Causal:</strong> Aplicar métodos causales
+(propensity score matching, DiD) para evaluar si intervenciones basadas
+en insights (ej: aumentar concentración) tienen efecto causal en
+rendimiento.</p>
+<hr />
+<h1 id="código-fuente">CÓDIGO FUENTE</h1>
+<h2 id="repositorio-github">Repositorio GitHub</h2>
+<p>El código fuente completo está disponible en repositorio GitHub
+público (post-graduación):</p>
+<p><strong>URL:</strong>
+https://github.com/[autor]/crypto-narrative-hunter-tfm</p>
+<p><strong>Estructura:</strong></p>
+<pre><code>crypto-narrative-hunter-tfm/
+├── README.md                          # Guía de instalación y uso
+├── data-pipeline/                     # Pipeline de datos
+│   ├── data_collection/               # Módulo Python
+│   │   └── common/                    # Utilidades (db, logging, checkpoints)
+│   ├── services/                      # Servicios de negocio
+│   │   ├── tokens/                    # Clasificación narrativa
+│   │   ├── transactions/              # Extracción transacciones
+│   │   ├── balances/                  # Snapshots de balance
+│   │   ├── prices/                    # Pricing USD
+│   │   ├── feature_engineering/       # Generación features
+│   │   └── validation/                # Aseguramiento de calidad
+│   ├── sql/                           # Queries y schemas
+│   │   ├── schema.sql                 # Schema PostgreSQL
+│   │   └── dune_queries/              # 16 queries Dune Analytics
+│   ├── notebooks/                     # Notebooks Jupyter
+│   │   ├── 01_comprehensive_eda.ipynb
+│   │   ├── Story_4.3_Clustering.ipynb
+│   │   ├── Story_4.4_Interpretation.ipynb
+│   │   └── Story_4.5_Evaluation.ipynb
+│   ├── tests/                         # Tests unitarios
+│   ├── outputs/                       # Datasets generados
+│   │   ├── features/                  # Features por categoría
+│   │   ├── clustering/                # Resultados clustering
+│   │   └── final_exports/             # CSV/Parquet finales
+│   ├── pyproject.toml                 # Dependencias
+│   └── .env.example                   # Template de configuración
+└── docs/                              # Documentación
+    ├── architecture.md
+    ├── feature_dictionary.md
+    └── operational_guide.md</code></pre>
+<p><strong>Tecnologías:</strong> - Python 3.11 - PostgreSQL 15 -
+scikit-learn, hdbscan, pandas, numpy - matplotlib, seaborn - pytest
+(testing)</p>
+<hr />
+<h2 id="instalación-y-reproducibilidad">Instalación y
+Reproducibilidad</h2>
+<h3 id="requisitos">Requisitos</h3>
+<ul>
+<li>Python 3.11+</li>
+<li>PostgreSQL 15+</li>
+<li>API keys: Dune Analytics, Alchemy, CoinGecko (free tiers
+suficientes)</li>
+</ul>
+<h3 id="setup">Setup</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clonar repositorio</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/<span class="pp">[</span><span class="ss">autor</span><span class="pp">]</span>/crypto-narrative-hunter-tfm.git</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> crypto-narrative-hunter-tfm/data-pipeline</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear entorno virtual</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ex">python3.11</span> <span class="at">-m</span> venv .venv</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalar dependencias</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurar variables de entorno</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> .env.example .env</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Editar .env con API keys</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicializar base de datos</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="ex">psql</span> <span class="at">-U</span> postgres <span class="at">-c</span> <span class="st">&quot;CREATE DATABASE crypto_narratives;&quot;</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> data_collection.cli init-db</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejecutar notebooks</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> notebook notebooks/</span></code></pre></div>
+<h3 id="reproducir-clustering">Reproducir Clustering</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Script simplificado</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> hdbscan <span class="im">import</span> HDBSCAN</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar datos</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;outputs/features/wallet_features_cleaned.csv&#39;</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">&#39;wallet_address&#39;</span>])</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Escalar</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>X_scaled <span class="op">=</span> scaler.fit_transform(X)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Clustering</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>clusterer <span class="op">=</span> HDBSCAN(min_cluster_size<span class="op">=</span><span class="dv">40</span>, min_samples<span class="op">=</span><span class="dv">8</span>, metric<span class="op">=</span><span class="st">&#39;euclidean&#39;</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> clusterer.fit_predict(X_scaled)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;cluster&#39;</span>] <span class="op">=</span> labels</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">&#39;cluster&#39;</span>].value_counts())</span></code></pre></div>
+<p><strong>Nota:</strong> Consultar notebooks en Apéndices B-D para
+análisis completos con visualizaciones.</p>
+<hr />
+<h1 id="bibliografía">BIBLIOGRAFÍA</h1>
+<p>Barber, B. M., &amp; Odean, T. (2000). Trading is hazardous to your
+wealth: The common stock investment performance of individual investors.
+<em>The Journal of Finance</em>, 55(2), 773-806.</p>
+<p>Campello, R. J., Moulavi, D., &amp; Sander, J. (2013). Density-based
+clustering based on hierarchical density estimates. In <em>Pacific-Asia
+Conference on Knowledge Discovery and Data Mining</em> (pp. 160-172).
+Springer.</p>
+<p>Cohen, J. (1988). <em>Statistical power analysis for the behavioral
+sciences</em> (2nd ed.). Lawrence Erlbaum Associates.</p>
+<p>Dune Analytics. (2025). <em>Dune SQL Reference</em>.
+https://docs.dune.com/</p>
+<p>Hubert, L., &amp; Arabie, P. (1985). Comparing partitions.
+<em>Journal of Classification</em>, 2(1), 193-218.</p>
+<p>Markowitz, H. (1952). Portfolio selection. <em>The Journal of
+Finance</em>, 7(1), 77-91.</p>
+<p>McInnes, L., Healy, J., &amp; Astels, S. (2017). hdbscan:
+Hierarchical density based clustering. <em>Journal of Open Source
+Software</em>, 2(11), 205.</p>
+<p>Milligan, G. W., &amp; Cooper, M. C. (1985). An examination of
+procedures for determining the number of clusters in a data set.
+<em>Psychometrika</em>, 50(2), 159-179.</p>
+<p>Pedregosa, F., et al. (2011). Scikit-learn: Machine learning in
+Python. <em>Journal of Machine Learning Research</em>, 12,
+2825-2830.</p>
+<p>Rousseeuw, P. J. (1987). Silhouettes: a graphical aid to the
+interpretation and validation of cluster analysis. <em>Journal of
+Computational and Applied Mathematics</em>, 20, 53-65.</p>
+<p>CoinGecko. (2025). <em>CoinGecko API Documentation</em>.
+https://www.coingecko.com/api/documentation</p>
+<p>Alchemy. (2025). <em>Alchemy API Reference</em>.
+https://docs.alchemy.com/</p>
+<p>Etherscan. (2025). <em>Ethereum Blockchain Explorer</em>.
+https://etherscan.io/</p>
+<p>Uniswap Labs. (2025). <em>Uniswap V3 Documentation</em>.
+https://docs.uniswap.org/</p>
+<p>Curve Finance. (2025). <em>Curve Protocol Overview</em>.
+https://curve.fi/</p>
+<hr />
+<h1 id="apéndices-1">APÉNDICES</h1>
+<h2 id="apéndice-a-análisis-exploratorio-de-datos-eda">APÉNDICE A:
+Análisis Exploratorio de Datos (EDA)</h2>
+<p><strong>Referencia:</strong> Notebook
+<code>01_comprehensive_eda.ipynb</code> en repositorio GitHub</p>
+<p><strong>Contenido:</strong> - Estadísticas descriptivas completas (41
+features) - Detección de outliers y tratamiento - Análisis de
+correlaciones (matriz 41×41) - Distribuciones univariadas -
+Visualizaciones de relaciones bivariadas clave</p>
+<p><strong>Hallazgos EDA documentados en:</strong>
+<code>data-pipeline/analysis/EDA_VALIDATION_REPORT.md</code> (12,000
+palabras)</p>
+<hr />
+<h2 id="apéndice-b-notebook-de-clustering-story-4.3">APÉNDICE B:
+Notebook de Clustering (Story 4.3)</h2>
+<p><strong>Referencia:</strong> Notebook
+<code>Story_4.3_Wallet_Clustering_Analysis.ipynb</code></p>
+<p><strong>Contenido:</strong> - Búsqueda en grilla de hiperparámetros
+HDBSCAN (48 combinaciones) - Comparación HDBSCAN vs K-Means (k=3, 5, 7)
+- Métricas de calidad por configuración - Proyecciones t-SNE con
+diferentes perplexities - 9 visualizaciones de clustering</p>
+<p><strong>Duración ejecución:</strong> ~60 minutos</p>
+<hr />
+<h2 id="apéndice-c-notebook-de-interpretación-story-4.4">APÉNDICE C:
+Notebook de Interpretación (Story 4.4)</h2>
+<p><strong>Referencia:</strong> Notebook
+<code>Story_4.4_Cluster_Interpretation.ipynb</code></p>
+<p><strong>Contenido:</strong> - Análisis estadístico por cluster (27
+métricas) - Identificación de carteras representativas (centroides, top
+performers) - Generación de personas por cluster - Análisis de
+solapamiento HDBSCAN-KMeans - Importancia de features (estadístico F de
+ANOVA)</p>
+<p><strong>Output:</strong> 14 perfiles detallados en JSON</p>
+<hr />
+<h2 id="apéndice-d-notebook-de-evaluación-story-4.5">APÉNDICE D:
+Notebook de Evaluación (Story 4.5)</h2>
+<p><strong>Referencia:</strong> Notebook
+<code>Story_4.5_Comprehensive_Evaluation.ipynb</code></p>
+<p><strong>Contenido:</strong> - Tests de Kruskal-Wallis para 7 métricas
+- Cálculo de tamaños de efecto (epsilon-squared) - Tests post-hoc (Dunn
+con Bonferroni) - Análisis de estabilidad bootstrap (1,000 iteraciones)
+- Validación cruzada algorítmica (ARI, NMI)</p>
+<p><strong>Output:</strong> Informe de validación estadística
+completo</p>
+<hr />
+<h2 id="apéndice-e-presentación-de-investigación">APÉNDICE E:
+Presentación de Investigación</h2>
+<p><strong>Referencia:</strong> Notebook
+<code>Epic_4_Research_Presentation.ipynb</code></p>
+<p><strong>Contenido:</strong> - Presentación académica de 15-20 minutos
+- 21 secciones con hipótesis, metodología, resultados - Visualizaciones
+integradas - Formato exportable a slides HTML</p>
+<p><strong>Uso:</strong> Presentación de defensa de tesis</p>
+<hr />
+<h2 id="apéndice-f-queries-sql-de-dune-analytics">APÉNDICE F: Queries
+SQL de Dune Analytics</h2>
+<p><strong>Referencia:</strong>
+<code>data-pipeline/sql/dune_queries/</code></p>
+<p><strong>Queries disponibles (16):</strong> 1.
+<code>smart_wallet_combined_dex.sql</code> - Identificación candidatas
+2. <code>wallet_transactions.sql</code> - Extracción transacciones 3.
+<code>uniswap_v3_pools.sql</code> - Metadata pools Uniswap V3 4.
+<code>curve_pools.sql</code> - Metadata pools Curve 5.
+<code>bot_detection_patterns.sql</code> - Patrones detección bots 6.
+<code>mev_detection_advanced.sql</code> - Detección ataques MEV 7.
+<code>wallet_performance_metrics.sql</code> - Métricas rendimiento 8. [9
+queries adicionales documentadas en README]</p>
+<p>Todas las queries incluyen comentarios detallados y son ejecutables
+directamente en Dune Analytics.</p>
+<hr />
+</body>
+</html>

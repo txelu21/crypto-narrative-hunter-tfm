@@ -1,0 +1,46 @@
+# Dune Analytics Query IDs Configuration
+# Generated: 2025-09-30
+# Status: Queries uploaded, pending fixes
+
+# Token Liquidity Analysis Queries
+liquidity_analysis:
+  uniswap_v2: 5878381
+  uniswap_v3: 5878390
+  curve: 5878406
+  token_filter: 5878444
+
+# Smart Wallet Discovery Queries
+wallet_discovery:
+  uniswap_volume: 5878470
+  curve_volume: 5878483
+  combined_dex: 5878544
+  bot_detection: 5878555
+  mev_detection: 5878561
+
+# Wallet Analysis Queries
+wallet_analysis:
+  performance_metrics: 5878574
+  exclusion_validation: 5878579
+
+# Testing & Validation
+testing:
+  query_suite: 5878586
+
+# Query URLs (for reference)
+urls:
+  uniswap_v2_pools: "https://dune.com/queries/5878381"
+  uniswap_v3_pools: "https://dune.com/queries/5878390"
+  curve_pools: "https://dune.com/queries/5878406"
+  token_filtering_helper: "https://dune.com/queries/5878444"
+  smart_wallet_uniswap_volume: "https://dune.com/queries/5878470"
+  smart_wallet_curve_volume: "https://dune.com/queries/5878483"
+  smart_wallet_combined_dex: "https://dune.com/queries/5878544"
+  bot_detection_patterns: "https://dune.com/queries/5878555"
+  mev_detection_advanced: "https://dune.com/queries/5878561"
+  wallet_performance_metrics: "https://dune.com/queries/5878574"
+  exclusion_validation: "https://dune.com/queries/5878579"
+  query_testing_suite: "https://dune.com/queries/5878586"
+# Transaction Collection
+transaction_collection:
+  wallet_transactions: 5897009
+  wallet_transactions_batch: 5897009  # Batch version for all wallets at once

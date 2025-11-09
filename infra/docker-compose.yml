@@ -1,0 +1,85 @@
+services:
+  # Landing Page - Next.js
+  landing-page:
+    build:
+      context: ./landing-page
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NEXT_PUBLIC_APP_NAME=Crypto Narrative Hunter
+      - NEXT_PUBLIC_CONTACT_EMAIL=placeholder@example.com
+    depends_on:
+      - api
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # API Service - FastAPI
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://user:password@database:5432/crypto_narratives
+      - API_SECRET_KEY=your-secret-key-here
+      - ML_SERVICE_URL=http://ml-service:8001
+    depends_on:
+      - database
+      - ml-service
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ML Service - FastAPI with ML libraries
+  ml-service:
+    build:
+      context: ./ml-service
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      - MODEL_PATH=/app/models
+      - DATA_PATH=/app/data
+      - API_URL=http://api:8000
+    volumes:
+      - ml_models:/app/models
+      - ml_data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Database - PostgreSQL
+  database:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=crypto_narratives
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d crypto_narratives"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  postgres_data:
+  ml_models:
+  ml_data:
+
+networks:
+  default:
+    name: crypto-narrative-hunter
