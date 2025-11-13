@@ -11,6 +11,9 @@ Este repositorio contiene los entregables completos para la tesis de máster de 
 | `docs/research/` | Anexos científicos: hipótesis de investigación, framework de evaluación, especificación de features. |
 | `data-pipeline/` | Pipeline completo de datos de Ethereum (código, notebooks, SQL, tests, outputs curados). |
 | `infra/` | `docker-compose.yml` para ejecutar los servicios de soporte descritos en la Sección 4. |
+| `time-series-experiment/` | Experimento exploratorio con redes LSTM para predicción de precios de Ethereum (material complementario). |
+
+> **Nota:** La carpeta `time-series-experiment/` contiene un pequeño ejercicio exploratorio de predicción de series temporales con redes neuronales LSTM aplicadas al precio de Ethereum. Aunque no forma parte del scope principal de la tesis, se incluye como material anecdótico que ilustra aproximaciones complementarias al análisis de mercados crypto.
 
 ## Descripción del Pipeline de Datos
 
@@ -72,6 +75,9 @@ This repository packages the deliverables required for the MBIT School master's 
 | `docs/research/` | Scientific annexes: research hypotheses, evaluation framework, feature specification. |
 | `data-pipeline/` | Complete Ethereum data pipeline (code, notebooks, SQL, tests, curated outputs). |
 | `infra/` | `docker-compose.yml` to run the supporting services described in Section 4. |
+| `time-series-experiment/` | Exploratory LSTM neural network experiment for Ethereum price prediction (supplementary material). |
+
+> **Note:** The `time-series-experiment/` folder contains a small exploratory exercise on time series prediction using LSTM neural networks applied to Ethereum prices. While not part of the thesis's main scope, it is included as anecdotal material illustrating complementary approaches to crypto market analysis.
 
 ## Data Pipeline Overview
 
