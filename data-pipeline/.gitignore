@@ -77,6 +77,12 @@ temp/
 .ipynb_checkpoints/
 notebooks/*.ipynb
 !notebooks/examples/*.ipynb
+# Thesis analysis notebooks - important for jury review
+!notebooks/01_comprehensive_eda.ipynb
+!notebooks/Epic_4_Research_Presentation.ipynb
+!notebooks/Story_4.3_Wallet_Clustering_Analysis.ipynb
+!notebooks/Story_4.4_Cluster_Interpretation.ipynb
+!notebooks/Story_4.5_Comprehensive_Evaluation.ipynb
 
 # Documentation build
 docs/_build/
